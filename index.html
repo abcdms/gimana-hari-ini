@@ -11,15 +11,20 @@
   <style>
     /* Gaya dasar halaman */
     body {
-      font-family: sans-serif;
-      background: #f5f5f5;
+      font-family: Arial, sans-serif;
+      background: url('https://i.imgur.com/oAe9jOE.jpg') no-repeat center center fixed;
+      background-size: cover;
       padding: 20px;
       margin: 0;
       text-align: center;
+      color: #fff;
     }
 
     h1 {
-      color: #333;
+      color: #ffc0cb;
+      font-size: 28px;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     }
 
     /* Kotak teks berjalan */
@@ -27,19 +32,20 @@
       max-width: 600px;
       margin: 20px auto;
       padding: 20px;
-      background: #fff;
-      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       font-size: 18px;
       line-height: 1.6;
+      color: #333;
     }
 
     /* Tombol modal */
     .btn-show-modal {
       display: inline-block;
       margin: 30px auto;
-      padding: 15px 30px;
-      background: #3498db;
+      padding: 12px 25px;
+      background: #ffc0cb;
       color: #fff;
       font-size: 16px;
       text-decoration: none;
@@ -49,7 +55,7 @@
     }
 
     .btn-show-modal:hover {
-      background: #2980b9;
+      background: #d14794;
     }
 
     /* Modal Overlay */
@@ -70,14 +76,13 @@
       width: 80%;
       max-width: 400px;
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 12px;
       text-align: center;
-      position: relative;
     }
 
     .modal-check-icon {
       font-size: 48px;
-      color: #2ecc71;
+      color: #ffc0cb;
       margin-bottom: 10px;
     }
 
@@ -89,17 +94,18 @@
 
     .modal-button {
       padding: 10px 20px;
-      background: #2ecc71;
+      background: #ffc0cb;
       color: #fff;
       font-size: 16px;
       border: none;
-      border-radius: 4px;
+      border-radius: 5px;
       cursor: pointer;
     }
 
     .modal-button:hover {
-      background: #27ae60;
+      background: #d14794;
     }
+
   </style>
 </head>
 <body>
@@ -125,13 +131,19 @@
     </div>
   </div>
 
+  <!-- Elemen Audio -->
+  <audio id="backgroundMusic" loop autoplay muted>
+    <source src="https://github.com/abcdms/HAL-L/raw/refs/heads/main/musik%20(1).mp3" type="audio/mp3">
+    Browser kamu tidak mendukung elemen audio.
+  </audio>
+
   <!-- JavaScript -->
   <script>
     // Array teks untuk animasi
     var teksAnimasi = [
-      "Hai! Gimana harimu hari ini? Semoga semuanya berjalan lancar dan menyenangkan ya. Ada sesuatu yang menarik atau spesial yang terjadi hari ini? Atau mungkin ada hal yang sedikit bikin capek? Apa pun itu, semoga kamu bisa melewatinya dengan baik",
-"Kalau hari ini terasa berat, jangan lupa istirahat sebentar dan lakukan sesuatu yang bikin kamu senang. Kadang, hal-hal kecil seperti mendengarkan lagu favorit, minum sesuatu yang enak, atau sekadar ngobrol santai bisa bikin suasana hati lebih baik",
-"Aku harap harimu menyenangkan dan kalau ada yang mau diceritain, aku siap dengerin!",
+      "Hai! Gimana harimu hari ini? Semoga semuanya berjalan lancar dan menyenangkan ya. Ada sesuatu yang menarik atau spesial yang terjadi hari ini? Atau mungkin ada hal yang sedikit bikin capek? Apa pun itu, semoga kamu bisa melewatinya dengan baik.",
+      "Kalau hari ini terasa berat, jangan lupa istirahat sebentar dan lakukan sesuatu yang bikin kamu senang. Kadang, hal-hal kecil seperti mendengarkan lagu favorit, minum sesuatu yang enak, atau sekadar ngobrol santai bisa bikin suasana hati lebih baik.",
+      "Aku harap harimu menyenangkan dan kalau ada yang mau diceritain, aku siap dengerin!",
     ];
     
     // Tunggu sampai DOM siap
@@ -151,6 +163,14 @@
       });
 
       instance.go();
+
+      // **Mulai musik saat halaman dimuat**
+      var music = document.getElementById("backgroundMusic");
+      music.play().then(() => {
+        music.muted = false; // Matikan mute setelah diputar
+      }).catch(error => {
+        console.log("Autoplay dicegah oleh browser:", error);
+      });
     });
 
     // Fungsi untuk menampilkan modal
@@ -166,6 +186,7 @@
       var waUrl = 'https://wa.me/' + phoneNumber + '?text=' + encodedMessage;
       window.location.href = waUrl;
     }
+
   </script>
 
 </body>
